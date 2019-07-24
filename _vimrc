@@ -11,24 +11,18 @@ set fileencodings=ucs-bom,utf-8,chinese
 set guifont=courier_new:h10
 set guioptions=a
 set autoindent
-set columns=120
+set lines=40 columns=120
+"set spell spelllang=en_us
 
 
-"filetype off
-"set rtp+=c:\Users\len\.vim\bundle\Vundle.vim
-"call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'tmhedberg/SimpylFold'       "避免注释或循环之类的缩进
-"Plugin 'bling/vim-airline'
-"Plugin 'Raimondi/delimitMate'       "自动括号闭合
-"Plugin 'majutsushi/tagbar'
-
-"call vundle#end()
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'Raimondi/delimitMate'       "auto close brace
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
+"Plug 'rstacruz/sparkup',{ 'for':['html','vue'] }  
+Plug 'posva/vim-vue'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'vue']}
 call plug#end()
 
 
@@ -65,8 +59,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Enable folding
-set foldmethod=indent
-set foldlevel=99
+"set foldmethod=marker
+"set foldlevel=0
 " Enable folding with the spacebar
 nnoremap <space> za
 nnoremap <F8> :TagbarToggle<CR>
@@ -77,3 +71,9 @@ vnoremap <silent> <C-F6> :s/^#//<cr>:noh<cr>
 
 let mapleader = ';'
 autocmd FileType python setlocal completeopt-=preview
+au BufNewFile,BufRead *.html,*.js,*.vue set tabstop=2
+au BufNewFile,BufRead *.html,*.js,*.vue set softtabstop=2
+au BufNewFile,BufRead *.html,*.js,*.vue set shiftwidth=2
+au BufNewFile,BufRead *.html,*.js,*.vue set expandtab
+au BufNewFile,BufRead *.html,*.js,*.vue set autoindent
+au BufNewFile,BufRead *.html,*.js,*.vue set fileformat=unix
