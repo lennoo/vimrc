@@ -8,36 +8,40 @@ set ruler		"Show the line and column number
 set hlsearch		"Highlight the search key
 set backspace=indent,eol,start
 set fileencodings=ucs-bom,utf-8,chinese
-set guifont=courier_new:h10
+set guifont=courier_new:h12
 set guioptions=a
 set autoindent
 set lines=40 columns=120
-"set spell spelllang=en_us
 
+set tabstop=2
+set softtabstop=2
 
 call plug#begin('~/.vim/plugged')
+Plug 'crusoexia/vim-monokai'
 Plug 'vim-airline/vim-airline'
 Plug 'Raimondi/delimitMate'       "auto close brace
 Plug 'majutsushi/tagbar'
-Plug 'davidhalter/jedi-vim'
+Plug 'jnurmine/Zenburn'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'davidhalter/jedi-vim'
 "Plug 'rstacruz/sparkup',{ 'for':['html','vue'] }  
-Plug 'posva/vim-vue'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'vue']}
+"Plug 'posva/vim-vue'
+"Plug 'mattn/emmet-vim', { 'for': ['html', 'vue']}
 call plug#end()
 
 
 syntax on           " Enable syntax highlighting
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 language message zh_CN.utf-8 " Use chinese message
-color zenburn " Color theme
-"set background=light
-"color solarized
-"color molokai
-"color monokai
-"let g:molokai_original = 1
-"set expandtab
+set expandtab
 set cursorline      "高亮光标所在行
 "set cursorcolumn   "高亮光标所在列
+"
+"真彩色，否则显示不正常
+if has('vcon')
+set termguicolors
+endif
+colorscheme zenburn
 
 set mouse=a
 
@@ -77,3 +81,10 @@ au BufNewFile,BufRead *.html,*.js,*.vue set shiftwidth=2
 au BufNewFile,BufRead *.html,*.js,*.vue set expandtab
 au BufNewFile,BufRead *.html,*.js,*.vue set autoindent
 au BufNewFile,BufRead *.html,*.js,*.vue set fileformat=unix
+
+if &term =~ "win32"
+  let &t_ti.="\e[1 q"
+  let &t_SI.="\e[5 q"
+  let &t_EI.="\e[1 q"
+  let &t_te.="\e[0 q"
+endif
